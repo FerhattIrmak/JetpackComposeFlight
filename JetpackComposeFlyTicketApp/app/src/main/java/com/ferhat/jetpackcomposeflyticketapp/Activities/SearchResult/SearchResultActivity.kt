@@ -24,8 +24,15 @@ class SearchResultActivity : AppCompatActivity() {
 
         setContent {
             StatusTopBarColor()
+
+            ItemListScreen(
+                from = from,
+                to = to,
+                viewModel = viewModel,
+                onBackClick = {}
+            )
         }
 
-
     }
+
 }

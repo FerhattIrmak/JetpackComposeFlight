@@ -35,7 +35,6 @@ import java.util.Locale
 
 
 @Composable
-
 fun DatePickerScreen(modifier: Modifier) {
     val context = LocalContext.current
     val dateFormat = remember { SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()) }
@@ -45,7 +44,8 @@ fun DatePickerScreen(modifier: Modifier) {
     val returnCalendar = remember { Calendar.getInstance().apply { add(Calendar.DAY_OF_YEAR, 1) } }
 
     var departureDate by remember { mutableStateOf(dateFormat.format(departureCalendar.time)) }
-    var returnDate by remember { mutableStateOf(dateFormat.format(departureCalendar.time)) }
+    var returnDate by remember { mutableStateOf(dateFormat.format(returnCalendar.time)) }
+
 
 
     Row {
@@ -63,11 +63,11 @@ fun DatePickerScreen(modifier: Modifier) {
 
         DatePickerItem(
             modifier,
-            dateText = departureDate,
+            dateText = returnDate,
             onDateSelected = { selectedDate ->
                 returnDate = selectedDate
             }, dateFormat = dateFormat,
-            calendar = departureCalendar,
+            calendar = returnCalendar,
             context = context
         )
     }
